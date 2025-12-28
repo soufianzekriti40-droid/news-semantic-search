@@ -74,11 +74,11 @@ def load_models():
     
     # Try to load spaCy model, download if not available
     try:
-        nlp = spacy.load('en_core_web_md')
+        nlp = spacy.load('en_core_web_sm')
     except OSError:
         st.info("Downloading spaCy model... This may take a few minutes on first run.")
         subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md"])
-        nlp = spacy.load('en_core_web_md')
+        nlp = spacy.load('en_core_web_sm')
     
     transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
     return nlp, transformer_model
@@ -365,4 +365,5 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
