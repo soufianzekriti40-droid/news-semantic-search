@@ -59,12 +59,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Cache loading functions
-@st.cache_resource
-def load_models():
-    """Load spaCy and transformer models"""
-    nlp = spacy.load('en_core_web_sm')
-    transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
-    return nlp, transformer_model
 
 @st.cache_resource
 def load_models():
@@ -77,11 +71,19 @@ def load_models():
         nlp = spacy.load('en_core_web_sm')
     except OSError:
         st.info("Downloading spaCy model... This may take a few minutes on first run.")
-        subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md"])
+        subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
         nlp = spacy.load('en_core_web_sm')
     
     transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
     return nlp, transformer_model
+
+@st.cache_data
+def load_data():
+    """Load processed data and embeddings"""
+    df = pd.read_csv('results/processed_data.csv')
+    embeddings_spacy = np.load('results/embeddings_spacy.npy')
+    embeddings_transformer = np.load('results/embeddings_transformer.npy')
+    return df, embeddings_spacy, embeddings_transformer
 
 # Load everything
 with st.spinner('Loading models and data...'):
@@ -365,5 +367,6 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
