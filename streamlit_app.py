@@ -80,9 +80,9 @@ def load_models():
 @st.cache_data
 def load_data():
     """Load processed data and embeddings"""
-    df = pd.read_csv('results/processed_data.csv')
-    embeddings_spacy = np.load('results/embeddings_spacy.npy')
-    embeddings_transformer = np.load('results/embeddings_transformer.npy')
+    df = pd.read_csv('processed_data.csv')
+    embeddings_spacy = np.load('embeddings_spacy.npy')
+    embeddings_transformer = np.load('embeddings_transformer.npy')
     return df, embeddings_spacy, embeddings_transformer
 
 # Load everything
@@ -367,6 +367,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
