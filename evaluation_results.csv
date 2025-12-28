@@ -1,0 +1,13 @@
+query,expected_category,spacy_precision,spacy_similarity,transformer_precision,transformer_similarity
+football soccer match championship,Sports,1.0,0.638705,1.0,0.4541149
+basketball NBA game playoffs,Sports,0.8,0.7693156,1.0,0.5925868
+tennis tournament grand slam,Sports,1.0,0.616445,1.0,0.5759064
+stock market trading shares,Business,0.8,0.739034,0.6,0.52179676
+company merger acquisition,Business,0.4,0.8218131,0.6,0.5423351
+oil prices economy recession,Business,1.0,0.7998358,1.0,0.5662082
+space NASA astronaut mission,Sci/Tech,1.0,0.708909,1.0,0.5309764
+computer software technology,Sci/Tech,1.0,0.7241208,1.0,0.46543545
+internet security hacking,Sci/Tech,1.0,0.64467233,1.0,0.52298224
+election president government,World,1.0,0.7103538,0.8,0.48324037
+war conflict military troops,World,1.0,0.77122724,1.0,0.5038162
+diplomacy international relations,World,0.2,0.6620814,1.0,0.5242199
