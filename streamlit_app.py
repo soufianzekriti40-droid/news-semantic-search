@@ -62,7 +62,7 @@ st.markdown("""
 @st.cache_resource
 def load_models():
     """Load spaCy and transformer models"""
-    nlp = spacy.load('en_core_web_md')
+    nlp = spacy.load('en_core_web_sm')
     transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
     return nlp, transformer_model
 
@@ -365,3 +365,4 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
