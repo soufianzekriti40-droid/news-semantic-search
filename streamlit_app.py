@@ -66,13 +66,22 @@ def load_models():
     transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
     return nlp, transformer_model
 
-@st.cache_data
-def load_data():
-    """Load processed data and embeddings"""
-    df = pd.read_csv('results/processed_data.csv')
-    embeddings_spacy = np.load('results/embeddings_spacy.npy')
-    embeddings_transformer = np.load('results/embeddings_transformer.npy')
-    return df, embeddings_spacy, embeddings_transformer
+@st.cache_resource
+def load_models():
+    """Load spaCy and transformer models"""
+    import subprocess
+    import sys
+    
+    # Try to load spaCy model, download if not available
+    try:
+        nlp = spacy.load('en_core_web_md')
+    except OSError:
+        st.info("Downloading spaCy model... This may take a few minutes on first run.")
+        subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_md"])
+        nlp = spacy.load('en_core_web_md')
+    
+    transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
+    return nlp, transformer_model
 
 # Load everything
 with st.spinner('Loading models and data...'):
@@ -354,4 +363,5 @@ st.markdown("""
     <p>Built with ❤️ using Streamlit | Master's in Data and Discourse Studies<br>
     Group Project for Computational Linguistics for Discourse Analysis</p>
 </div>
+
 """, unsafe_allow_html=True)
