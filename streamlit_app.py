@@ -96,7 +96,7 @@ def get_spacy_embedding(text):
     doc = nlp(text)
     vectors = [token.vector for token in doc if token.has_vector]
     if len(vectors) == 0:
-        return np.zeros(300)
+        return np.zeros(96)
     return np.mean(vectors, axis=0)
 
 def get_transformer_embedding(text):
@@ -367,6 +367,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
